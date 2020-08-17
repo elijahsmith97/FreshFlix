@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, Image, View, ActivityIndicator, ScrollView, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, TextInput, Image, View, ActivityIndicator, ScrollView, TouchableOpacity, SafeAreaView } from 'react-native';
 import { render } from 'react-dom';
 import * as Font from 'expo-font';
 import { AppLoading } from 'expo';
@@ -35,6 +35,17 @@ export default class App extends React.Component {
       
   }
 
+  searchMovies = (movie) => {
+    const filteredMovies = this.state.results.filter(
+      movie => {
+        let movieLowercase = (movie.title).toLowerCase()
+        let searchTermLowercase = movie.toLowerCase()
+
+        return movieLowercase.indexOf(searchTermLowercase) > -1
+      });
+      this.setState({movie: filteredMovies});
+  }
+
   render () {
 
     if (this.state.isLoading) {
@@ -63,6 +74,19 @@ export default class App extends React.Component {
         <View style={styles.container}>
 
           <Text style={styles.title}>FreshFlix</Text>
+
+          <SafeAreaView style={{ backgroundColor: '#dddddd' }}>
+            <TextInput placeholder='Search' style={
+              { backgroundColor: '#fff', 
+                height: 40,
+                fontSize: 36,
+                padding: 10,
+                color: 'grey'
+              }}
+                onChangeText={(movie) => this.searchMovies(movie)}>
+              </TextInput>
+          </SafeAreaView>
+
           <ScrollView style={styles.scrollView}>
             {movie}
           </ScrollView>
