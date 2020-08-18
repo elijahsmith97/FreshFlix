@@ -75,13 +75,14 @@ export default class App extends React.Component {
 
           <Text style={styles.title}>FreshFlix</Text>
 
-          <SafeAreaView style={{ backgroundColor: '#dddddd' }}>
+          <SafeAreaView style={{ backgroundColor: 'black', alignSelf: 'left', marginHorizontal: 25 }}>
             <TextInput placeholder='Search' style={
-              { backgroundColor: '#fff', 
-                height: 40,
-                fontSize: 36,
+              { backgroundColor: 'black', 
+                height: 20,
+                fontSize: 20,
                 padding: 10,
-                color: 'grey'
+                color: 'white',
+                marginBottom: 20,
               }}
                 onChangeText={(movie) => this.searchMovies(movie)}>
               </TextInput>
